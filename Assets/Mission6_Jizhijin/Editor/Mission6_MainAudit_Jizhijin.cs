@@ -127,7 +127,7 @@ public static class Mission6_MainAudit_Jizhijin
                     Check(select != null, "main level selection menu exists");
                     var names = new SerializedObject(select).FindProperty("sceneNames");
                     string[] expectedNames = { "Mission1", "Mission2_TianyuTang", "Mission3", "Mission4", "ZhuohengWu Mission5", "Mission6_Jizhijin" };
-                    Check(Enumerable.Range(0, names.arraySize).Select(i => names.GetArrayElementAtIndex(i).stringValue).SequenceEqual(expectedNames), "MISSION 1 through 6 labels correspond to the correct serialized scenes");
+                    Check(Enumerable.Range(0, names.arraySize).Select(i => names.GetArrayElementAtIndex(i).stringValue).SequenceEqual(expectedNames), "menu entries retain their serialized scene destinations");
                     int targetIndex = Enumerable.Range(0, names.arraySize).First(i => names.GetArrayElementAtIndex(i).stringValue == "Mission6_Jizhijin");
                     UnityEngine.UI.Button linked = null;
                     foreach (var button in UnityEngine.Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsInactive.Include, FindObjectsSortMode.None))
@@ -141,7 +141,8 @@ public static class Mission6_MainAudit_Jizhijin
                     }
                     Check(linked != null, "main menu has a button bound to the serialized Mission6 entry");
                     string label = linked.GetComponentInChildren<TMPro.TMP_Text>(true)?.text ?? linked.GetComponentInChildren<UnityEngine.UI.Text>(true)?.text ?? "";
-                    Check(label.Replace(" ", "").ToUpperInvariant() == "MISSION6", "the actual MISSION 6 button is the Mission6 entry");
+                    int missionNumber = SceneUtility.GetBuildIndexByScenePath(Mission6_Setup_Jizhijin.ScenePath) + 1;
+                    Check(label.Replace(" ", "").ToUpperInvariant() == $"MISSION{missionNumber}", "the Mission6 button is labeled with its campaign position");
                     linked.onClick.Invoke(); Advance(1); break;
                 case 1:
                     var c = UnityEngine.Object.FindFirstObjectByType<Mission6_Campaign_Jizhijin>();
