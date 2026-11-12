@@ -191,7 +191,18 @@ public static class Mission6_GridBuilder_Jizhijin
         UnityEventTools.AddPersistentListener(Button("SubmitButton",panel.transform,"CHECK WORDS",new Vector2(0,-270)).onClick,p.CheckAnswer);
         var replay=Button("Replay",panel.transform,"PLAY AGAIN",new Vector2(0,-320));UnityEventTools.AddPersistentListener(replay.onClick,p.PlayAgain);p.playAgainButton=replay.gameObject;
         var next=Button("NextLevel_Jizhijin",panel.transform,data.number==1?"NEXT LEVEL":"FINISH LEVEL",new Vector2(290,-320));UnityEventTools.AddPersistentListener(next.onClick,p.NextLevel);p.nextLevelButton=next.gameObject;
-        UnityEventTools.AddPersistentListener(Button("BackToGrid",panel.transform,"BACK TO MAZE",new Vector2(-290,-320)).onClick,level.campaign.ClosePuzzle);return p;
+        UnityEventTools.AddPersistentListener(Button("BackToGrid",panel.transform,"BACK TO MAZE",new Vector2(-290,-320)).onClick,level.campaign.ClosePuzzle);
+        AddMissionNavigation(p);
+        return p;
+    }
+    public static void AddMissionNavigation(Mission6_Spelling_ExitPanel_Jizhijin puzzle)
+    {
+        var panel = puzzle.transform;
+        var campaign = puzzle.level.campaign;
+        if (panel.Find("MainMenu") == null)
+            UnityEventTools.AddPersistentListener(Button("MainMenu", panel, "MAIN MENU", new Vector2(-290, -270)).onClick, campaign.ReturnToMenu);
+        if (panel.Find("NextMission") == null)
+            UnityEventTools.AddPersistentListener(Button("NextMission", panel, "NEXT MISSION", new Vector2(290, -270)).onClick, campaign.NextMission);
     }
     static Material Material(string name, Color color)
     {

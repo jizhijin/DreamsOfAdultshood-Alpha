@@ -175,8 +175,17 @@ public class Mission6_Campaign_Jizhijin : MonoBehaviour
     {
         int index = SceneManager.GetActiveScene().buildIndex + 1;
         string path = string.IsNullOrWhiteSpace(nextSceneName) ? (index < SceneManager.sceneCountInBuildSettings ? SceneUtility.GetScenePathByBuildIndex(index) : "") : nextSceneName.Trim();
+        LeaveMission(path);
+    }
+    public void ReturnToMenu() => LeaveMission(SceneUtility.GetScenePathByBuildIndex(0));
+    void LeaveMission(string path)
+    {
         if (string.IsNullOrEmpty(path) || !Application.CanStreamedLevelBeLoaded(path)) return;
-        restartAt = 0; night.RestoreDay(); Time.timeScale = 1; SceneManager.LoadScene(path);
+        restartAt = 0;
+        photo.Close();
+        night.RestoreDay();
+        Time.timeScale = 1;
+        SceneManager.LoadScene(path);
     }
     public void SetPlayerControl(bool enabled)
     {

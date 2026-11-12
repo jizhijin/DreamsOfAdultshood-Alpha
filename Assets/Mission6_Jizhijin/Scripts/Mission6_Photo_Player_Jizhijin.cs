@@ -20,10 +20,14 @@ public class Mission6_Photo_Player_Jizhijin : MonoBehaviour
     bool CanUse() => level != null && level.campaign.Phase == Mission6_Phase_Jizhijin.Exploring && !level.campaign.PuzzleOpen && Time.timeScale > 0 && moving.enabled;
     void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.zKey.wasPressedThisFrame) TryUsePhoto();
+        if (Keyboard.current != null && Keyboard.current.zKey.wasPressedThisFrame)
+        {
+            if (IsVisible) Close();
+            else TryUsePhoto();
+        }
         if (!IsVisible) return;
         if (!CanUse() || Time.unscaledTime >= expiresAt) { Close(); return; }
-        countdownText.text = "MAP PHOTO / " + Mathf.CeilToInt(expiresAt - Time.unscaledTime) + "s" + (level.stageNumber == 2 ? "   |   " + level.campaign.night.Status : "");
+        countdownText.text = "MAP PHOTO / " + Mathf.CeilToInt(expiresAt - Time.unscaledTime) + "s   |   Z TO CLOSE" + (level.stageNumber == 2 ? "   |   " + level.campaign.night.Status : "");
     }
     public bool TryUsePhoto()
     {

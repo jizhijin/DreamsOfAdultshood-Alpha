@@ -1,25 +1,29 @@
-PASS: main startup scene loads in the supplied build order
-PASS: main Mission2 enemies bind to their own NavMesh after startup
+PASS: the Alpha starts at the main menu
 PASS: main level selection menu exists
-PASS: MISSION 1 through 6 labels correspond to the correct serialized scenes
+PASS: menu entries retain their serialized scene destinations
 PASS: main menu has a button bound to the serialized Mission6 entry
-PASS: the actual MISSION 6 button is the Mission6 entry
+PASS: the Mission6 button is labeled with its campaign position
 PASS: main menu selects the updated Mission6 scene
 PASS: entering Mission6 resets time and player controls
 PASS: first PLAN allows direct mouse clicking while WASD stays active
 PASS: TAB can switch the first PLAN to normal mouse look
 PASS: TAB returns to a clickable cursor without disabling PLAN movement
 PASS: 2 shortcut directly enters level two from the released cursor state
+PASS: Z opens the once-per-level photo
+PASS: second Z closes the photo without restoring the use
 PASS: main scripts do not override Mission6 answer pause
-PASS: main scripts do not block return to maze
-PASS: Mission6 NEXT MISSION follows main build order to Mission1
-PASS: Mission1 retains its player and unpaused time after returning from Mission6
-PASS: main scene loads: Mission2_TianyuTang
-PASS: main scene retains a camera: Mission2_TianyuTang
-PASS: main scene loads: Mission3
-PASS: main scene retains a camera: Mission3
+PASS: the exit buttons are available before any answers
+PASS: MAIN MENU returns directly from the unanswered crossword
+PASS: reopening the mission from the menu starts at level one
+PASS: NEXT MISSION opens the flashlight maze without solving the crossword
+PASS: the next mission starts unpaused
+PASS: flashlight maze enemies bind to their NavMesh
+PASS: main scene loads: Mission1
+PASS: main scene retains a camera: Mission1
 PASS: main scene loads: ZhuohengWu Mission5
 PASS: main scene retains a camera: ZhuohengWu Mission5
+PASS: main scene loads: Mission3
+PASS: main scene retains a camera: Mission3
 PASS: main scene loads: Mission4
 PASS: main scene retains a camera: Mission4
 PASS: no runtime errors across the main integration smoke test
